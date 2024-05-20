@@ -171,7 +171,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Parcial 3 - punto 3 y 4
+                    Presentación
                 </a>
             </li>
         </ul>
@@ -392,7 +392,8 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pdåååå</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
 <span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
@@ -735,19 +736,7 @@ Ventana T=28:
         <span class="k">if</span> <span class="n">actual</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">res</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">actual</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">predicted</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">/</span> <span class="n">actual</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">res</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">predicted</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1e-8</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">res</span>
-
-<span class="k">def</span> <span class="nf">MAPE</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span> 
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">percentage_error</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y_true</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y_pred</span><span class="p">))))</span> <span class="o">*</span> <span class="mi">100</span>
-
-<span class="k">def</span> <span class="nf">percentage_error</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="n">predicted</span><span class="p">):</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">actual</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">actual</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-        <span class="k">if</span> <span class="n">actual</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">res</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">actual</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">predicted</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">/</span> <span class="n">actual</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">res</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">predicted</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1e-8</span><span class="p">)</span>  <span class="c1"># Evitar división por cero</span>
+            <span class="n">res</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">predicted</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">actual</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">res</span>
 
 <span class="k">def</span> <span class="nf">MAPE</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span> 
@@ -775,18 +764,18 @@ Ventana T=28:
         
         <span class="c1"># Entrenar y evaluar cada modelo</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">model_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
             <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
             <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+            <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
             
             <span class="n">rmse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-            <span class="n">mape</span> <span class="o">=</span> <span class="n">MAPE</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-            <span class="n">r2</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+            <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span>
             
             <span class="n">all_results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
                 <span class="s1">&#39;Modelo&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
                 <span class="s1">&#39;RMSE&#39;</span><span class="p">:</span> <span class="n">rmse</span><span class="p">,</span>
-                <span class="s1">&#39;MAPE&#39;</span><span class="p">:</span> <span class="n">mape</span><span class="p">,</span>
-                <span class="s1">&#39;R^2&#39;</span><span class="p">:</span> <span class="n">r2</span>
+                <span class="s1">&#39;Tiempo&#39;</span><span class="p">:</span> <span class="n">elapsed_time</span>
             <span class="p">})</span>
 
 <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">all_results</span><span class="p">)</span>
@@ -799,144 +788,15 @@ Ventana T=28:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">25</span><span class="p">],</span> <span class="n">line</span> <span class="mi">50</span>
-<span class="g g-Whitespace">     </span><span class="mi">48</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">model_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-<span class="g g-Whitespace">     </span><span class="mi">49</span>     <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">50</span>     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">52</span>     <span class="n">rmse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">53</span>     <span class="n">mape</span> <span class="o">=</span> <span class="n">MAPE</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-
-<span class="nn">File c:\Users\K-Zhu\AppData\Local\Programs\Python\Python311\Lib\site-packages\sklearn\pipeline.py:603,</span> in <span class="ni">Pipeline.predict</span><span class="nt">(self, X, **params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">601</span>     <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">transform</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iter</span><span class="p">(</span><span class="n">with_final</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">602</span>         <span class="n">Xt</span> <span class="o">=</span> <span class="n">transform</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Xt</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">603</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xt</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">605</span> <span class="c1"># metadata routing enabled</span>
-<span class="g g-Whitespace">    </span><span class="mi">606</span> <span class="n">routed_params</span> <span class="o">=</span> <span class="n">process_routing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;predict&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
-
-<span class="nn">File c:\Users\K-Zhu\AppData\Local\Programs\Python\Python311\Lib\site-packages\sklearn\ensemble\_forest.py:1077,</span> in <span class="ni">ForestRegressor.predict</span><span class="nt">(self, X)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1075</span> <span class="c1"># Parallel loop</span>
-<span class="g g-Whitespace">   </span><span class="mi">1076</span> <span class="n">lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
-<span class="ne">-&gt; </span><span class="mi">1077</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span> <span class="n">require</span><span class="o">=</span><span class="s2">&quot;sharedmem&quot;</span><span class="p">)(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1078</span>     <span class="n">delayed</span><span class="p">(</span><span class="n">_accumulate_prediction</span><span class="p">)(</span><span class="n">e</span><span class="o">.</span><span class="n">predict</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="p">[</span><span class="n">y_hat</span><span class="p">],</span> <span class="n">lock</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1079</span>     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span>
-<span class="g g-Whitespace">   </span><span class="mi">1080</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1082</span> <span class="n">y_hat</span> <span class="o">/=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1084</span> <span class="k">return</span> <span class="n">y_hat</span>
-
-<span class="nn">File c:\Users\K-Zhu\AppData\Local\Programs\Python\Python311\Lib\site-packages\sklearn\utils\parallel.py:67,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span> <span class="n">config</span> <span class="o">=</span> <span class="n">get_config</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span> <span class="n">iterable_with_config</span> <span class="o">=</span> <span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span>     <span class="p">(</span><span class="n">_with_config</span><span class="p">(</span><span class="n">delayed_func</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">65</span>     <span class="k">for</span> <span class="n">delayed_func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="n">iterable</span>
-<span class="g g-Whitespace">     </span><span class="mi">66</span> <span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">67</span> <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="n">iterable_with_config</span><span class="p">)</span>
-
-<span class="nn">File c:\Users\K-Zhu\AppData\Local\Programs\Python\Python311\Lib\site-packages\joblib\parallel.py:1950,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1944</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_ref</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1946</span> <span class="c1"># The first item from the output is blank, but it makes the interpreter</span>
-<span class="g g-Whitespace">   </span><span class="mi">1947</span> <span class="c1"># progress until it enters the Try/Except block of the generator and</span>
-<span class="g g-Whitespace">   </span><span class="mi">1948</span> <span class="c1"># reach the first `yield` statement. This starts the aynchronous</span>
-<span class="g g-Whitespace">   </span><span class="mi">1949</span> <span class="c1"># dispatch of the tasks to the workers.</span>
-<span class="ne">-&gt; </span><span class="mi">1950</span> <span class="nb">next</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1952</span> <span class="k">return</span> <span class="n">output</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_generator</span> <span class="k">else</span> <span class="nb">list</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-
-<span class="nn">File c:\Users\K-Zhu\AppData\Local\Programs\Python\Python311\Lib\site-packages\joblib\parallel.py:1588,</span> in <span class="ni">Parallel._get_outputs</span><span class="nt">(self, iterator, pre_dispatch)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1586</span> <span class="n">detach_generator_exit</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="g g-Whitespace">   </span><span class="mi">1587</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1588</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_start</span><span class="p">(</span><span class="n">iterator</span><span class="p">,</span> <span class="n">pre_dispatch</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1589</span>     <span class="c1"># first yield returns None, for internal use only. This ensures</span>
-<span class="g g-Whitespace">   </span><span class="mi">1590</span>     <span class="c1"># that we enter the try/except block and start dispatching the</span>
-<span class="g g-Whitespace">   </span><span class="mi">1591</span>     <span class="c1"># tasks.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1592</span>     <span class="k">yield</span>
-
-<span class="nn">File c:\Users\K-Zhu\AppData\Local\Programs\Python\Python311\Lib\site-packages\joblib\parallel.py:1571,</span> in <span class="ni">Parallel._start</span><span class="nt">(self, iterator, pre_dispatch)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1562</span> <span class="k">def</span> <span class="nf">_start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterator</span><span class="p">,</span> <span class="n">pre_dispatch</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1563</span>     <span class="c1"># Only set self._iterating to True if at least a batch</span>
-<span class="g g-Whitespace">   </span><span class="mi">1564</span>     <span class="c1"># was dispatched. In particular this covers the edge</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1568</span>     <span class="c1"># was very quick and its callback already dispatched all the</span>
-<span class="g g-Whitespace">   </span><span class="mi">1569</span>     <span class="c1"># remaining jobs.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1570</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_iterating</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="ne">-&gt; </span><span class="mi">1571</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_one_batch</span><span class="p">(</span><span class="n">iterator</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1572</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_iterating</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_iterator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1574</span>     <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_one_batch</span><span class="p">(</span><span class="n">iterator</span><span class="p">):</span>
-
-<span class="nn">File c:\Users\K-Zhu\AppData\Local\Programs\Python\Python311\Lib\site-packages\joblib\parallel.py:1462,</span> in <span class="ni">Parallel.dispatch_one_batch</span><span class="nt">(self, iterator)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1460</span>     <span class="k">return</span> <span class="kc">False</span>
-<span class="g g-Whitespace">   </span><span class="mi">1461</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1462</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1463</span>     <span class="k">return</span> <span class="kc">True</span>
-
-<span class="nn">File c:\Users\K-Zhu\AppData\Local\Programs\Python\Python311\Lib\site-packages\joblib\parallel.py:1384,</span> in <span class="ni">Parallel._dispatch</span><span class="nt">(self, batch)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1379</span> <span class="n">batch_tracker</span> <span class="o">=</span> <span class="n">BatchCompletionCallBack</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1380</span>     <span class="n">dispatch_timestamp</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span>
-<span class="g g-Whitespace">   </span><span class="mi">1381</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1382</span> <span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">batch_tracker</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1384</span> <span class="n">job</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">batch_tracker</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1385</span> <span class="n">batch_tracker</span><span class="o">.</span><span class="n">register_job</span><span class="p">(</span><span class="n">job</span><span class="p">)</span>
-
-<span class="nn">File c:\Users\K-Zhu\AppData\Local\Programs\Python\Python311\Lib\site-packages\joblib\_parallel_backends.py:282,</span> in <span class="ni">PoolManagerMixin.apply_async</span><span class="nt">(self, func, callback)</span>
-<span class="g g-Whitespace">    </span><span class="mi">278</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Schedule a func to be run&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">279</span> <span class="c1"># Here, we need a wrapper to avoid crashes on KeyboardInterruptErrors.</span>
-<span class="g g-Whitespace">    </span><span class="mi">280</span> <span class="c1"># We also call the callback on error, to make sure the pool does not</span>
-<span class="g g-Whitespace">    </span><span class="mi">281</span> <span class="c1"># wait on crashed jobs.</span>
-<span class="ne">--&gt; </span><span class="mi">282</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_pool</span><span class="p">()</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">283</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_wrap_func_call</span><span class="p">,</span> <span class="p">(</span><span class="n">func</span><span class="p">,),</span>
-<span class="g g-Whitespace">    </span><span class="mi">284</span>     <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span> <span class="n">error_callback</span><span class="o">=</span><span class="n">callback</span>
-<span class="g g-Whitespace">    </span><span class="mi">285</span> <span class="p">)</span>
-
-<span class="nn">File c:\Users\K-Zhu\AppData\Local\Programs\Python\Python311\Lib\site-packages\joblib\_parallel_backends.py:450,</span> in <span class="ni">ThreadingBackend._get_pool</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">444</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Lazily initialize the thread pool</span>
-<span class="g g-Whitespace">    </span><span class="mi">445</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">446</span><span class="sd"> The actual pool of worker threads is only initialized at the first</span>
-<span class="g g-Whitespace">    </span><span class="mi">447</span><span class="sd"> call to apply_async.</span>
-<span class="g g-Whitespace">    </span><span class="mi">448</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">449</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">450</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_pool</span> <span class="o">=</span> <span class="n">ThreadPool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">451</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool</span>
-
-<span class="nn">File c:\Users\K-Zhu\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\pool.py:930,</span> in <span class="ni">ThreadPool.__init__</span><span class="nt">(self, processes, initializer, initargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">929</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">processes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">initializer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">initargs</span><span class="o">=</span><span class="p">()):</span>
-<span class="ne">--&gt; </span><span class="mi">930</span>     <span class="n">Pool</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">processes</span><span class="p">,</span> <span class="n">initializer</span><span class="p">,</span> <span class="n">initargs</span><span class="p">)</span>
-
-<span class="nn">File c:\Users\K-Zhu\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\pool.py:253,</span> in <span class="ni">Pool.__init__</span><span class="nt">(self, processes, initializer, initargs, maxtasksperchild, context)</span>
-<span class="g g-Whitespace">    </span><span class="mi">251</span> <span class="bp">self</span><span class="o">.</span><span class="n">_result_handler</span><span class="o">.</span><span class="n">daemon</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="g g-Whitespace">    </span><span class="mi">252</span> <span class="bp">self</span><span class="o">.</span><span class="n">_result_handler</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">RUN</span>
-<span class="ne">--&gt; </span><span class="mi">253</span> <span class="bp">self</span><span class="o">.</span><span class="n">_result_handler</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">255</span> <span class="bp">self</span><span class="o">.</span><span class="n">_terminate</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">Finalize</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">256</span>     <span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_terminate_pool</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">257</span>     <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_taskqueue</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inqueue</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_outqueue</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">260</span>     <span class="n">exitpriority</span><span class="o">=</span><span class="mi">15</span>
-<span class="g g-Whitespace">    </span><span class="mi">261</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">262</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">RUN</span>
-
-<span class="nn">File c:\Users\K-Zhu\AppData\Local\Programs\Python\Python311\Lib\threading.py:962,</span> in <span class="ni">Thread.start</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">960</span>         <span class="k">del</span> <span class="n">_limbo</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">961</span>     <span class="k">raise</span>
-<span class="ne">--&gt; </span><span class="mi">962</span> <span class="bp">self</span><span class="o">.</span><span class="n">_started</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
-
-<span class="nn">File c:\Users\K-Zhu\AppData\Local\Programs\Python\Python311\Lib\threading.py:622,</span> in <span class="ni">Event.wait</span><span class="nt">(self, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">620</span> <span class="n">signaled</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_flag</span>
-<span class="g g-Whitespace">    </span><span class="mi">621</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">signaled</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">622</span>     <span class="n">signaled</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cond</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">623</span> <span class="k">return</span> <span class="n">signaled</span>
-
-<span class="nn">File c:\Users\K-Zhu\AppData\Local\Programs\Python\Python311\Lib\threading.py:320,</span> in <span class="ni">Condition.wait</span><span class="nt">(self, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">318</span> <span class="k">try</span><span class="p">:</span>    <span class="c1"># restore state no matter what (e.g., KeyboardInterrupt)</span>
-<span class="g g-Whitespace">    </span><span class="mi">319</span>     <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">320</span>         <span class="n">waiter</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">321</span>         <span class="n">gotit</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="g g-Whitespace">    </span><span class="mi">322</span>     <span class="k">else</span><span class="p">:</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          Modelo      RMSE      Tiempo
+0  Random Forest  0.693801  293.403596
+1            SVM  0.720594  293.337858
+El mejor modelo es: Random Forest con un RMSE de 0.6938006207847945
 </pre></div>
 </div>
 </div>
 </div>
-<p>El modelo de Random Forest tiene el RMSE más bajo (0.586544), el cuarto MAPE más bajo (30.373149), y el R² más alto (0.795329), lo que indica que es el modelo con el mejor rendimiento general de los presentados.</p>
+<p>El modelo de Random Forest tiene el RMSE más bajo (0.693801) y SVM con un RMSE de (0.720594) lo que indica que el modelo con el mejor rendimiento general presentado es el Random Forest para estos datos.</p>
 <p>Ahora realizamos la optimización bayesiana para obtener los mejores hiperparámetros para Radom Forest.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
