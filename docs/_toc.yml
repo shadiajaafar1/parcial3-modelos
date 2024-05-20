@@ -4,6 +4,5 @@
 format: jb-book
 root: intro
 chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
+- file: Parcial3_P2
+- file: parcial3_punto4
